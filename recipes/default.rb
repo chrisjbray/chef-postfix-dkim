@@ -25,7 +25,10 @@ node.default['postfix']['main']['non_smtpd_milters']     = node['postfix_dkim'][
 include_recipe 'postfix'
 
 package 'opendkim'
-package 'opendkim-tools' # For opendkim-genkey
+case node['platform_family']
+when 'debian', 'ubuntu'
+  package 'opendkim-tools' # For opendkim-genkey
+end
 
 template "/etc/opendkim.conf" do
   source "opendkim.conf.erb"
