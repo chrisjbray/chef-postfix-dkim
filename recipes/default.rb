@@ -41,6 +41,7 @@ template "/etc/opendkim.conf" do
     send_headers: node['postfix_dkim']['sender_headers'],
     socket:       node['postfix_dkim']['socket']
   )
+  notifies :restart, 'service[opendkim]', :delayed
 end
 
 template "/etc/default/opendkim" do
@@ -49,6 +50,7 @@ template "/etc/default/opendkim" do
   variables(
     socket: node['postfix_dkim']['socket']
   )
+  notifies :restart, 'service[opendkim]', :delayed
 end
 
 directory File.dirname(node['postfix_dkim']['keyfile']) do
