@@ -38,7 +38,8 @@ template "/etc/opendkim.conf" do
     keyfile:      node['postfix_dkim']['keyfile'],
     selector:     node['postfix_dkim']['selector'],
     autorestart:  (node['postfix_dkim']['autorestart'] ? 'yes' : 'no'),
-    send_headers: node['postfix_dkim']['sender_headers']
+    send_headers: node['postfix_dkim']['sender_headers'],
+    socket:       node['postfix_dkim']['socket']
   )
 end
 
