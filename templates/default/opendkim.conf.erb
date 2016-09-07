@@ -17,7 +17,7 @@ Selector		<%= @selector %>
 # Common settings. See opendkim.conf(5) for more information.
 AutoRestart		<%= @autorestart %>
 Background		yes
-Canonicalization	simple
+Canonicalization	<%= @canonicalization %>
 DNSTimeout		5
 Mode			sv
 SignatureAlgorithm	rsa-sha256

@@ -4,6 +4,7 @@ default['postfix_dkim']['keyfile'] = '/etc/mail/dkim.key'
 default['postfix_dkim']['selector'] = 'mail'
 default['postfix_dkim']['autorestart'] = false
 default['postfix_dkim']['sender_headers'] = nil
+default['postfix_dkim']['canonicalization'] = 'simple'
 
 # /etc/default/opendkim
 default['postfix_dkim']['socket'] = 'inet:8891@localhost' # Ubuntu default - listen on loopback on port 8891

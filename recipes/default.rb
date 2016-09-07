@@ -39,7 +39,8 @@ template "/etc/opendkim.conf" do
     selector:     node['postfix_dkim']['selector'],
     autorestart:  (node['postfix_dkim']['autorestart'] ? 'yes' : 'no'),
     send_headers: node['postfix_dkim']['sender_headers'],
-    socket:       node['postfix_dkim']['socket']
+    socket:       node['postfix_dkim']['socket'],
+    canonicalization: node['postfix_dkim']['canonicalization']
   )
   notifies :restart, 'service[opendkim]', :delayed
 end
