@@ -30,6 +30,9 @@ when 'debian', 'ubuntu'
   package 'opendkim-tools' # For opendkim-genkey
 end
 
+Chef::Log.info("*** DKIM:")
+Chef::Log.info(node['postfix_dkim'])
+
 template "/etc/opendkim.conf" do
   source "opendkim.conf.erb"
   mode 0755
