@@ -25,7 +25,7 @@ SubDomains		no
 #ADSPDiscard		no
 #Version		rfc4871
 X-Header		no
-<% if node["platform_family"] == "rhel" %>
+<% if node['platform_family'] == 'rhel' %>
 Socket      <%= @socket %>
 <% end %>
 
