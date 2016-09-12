@@ -24,11 +24,7 @@ node.default['postfix']['main']['non_smtpd_milters']     = node['postfix_dkim'][
 
 include_recipe 'postfix'
 
-package 'opendkim'
-case node['platform_family']
-when 'debian', 'ubuntu'
-  package 'opendkim-tools' # For opendkim-genkey
-end
+include_recipe 'postfix-dkim::package'
 
 Chef::Log.info("*** DKIM:")
 Chef::Log.info(node['postfix_dkim'])
