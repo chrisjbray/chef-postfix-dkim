@@ -24,11 +24,7 @@ node.default['postfix']['main']['non_smtpd_milters']     = node['postfix_dkim'][
 
 include_recipe 'postfix'
 
-Chef::Log.info("*** DKIM:")
-Chef::Log.info(node['postfix_dkim'])
-
 include_recipe 'postfix-dkim::package'
-
 
 template "/etc/opendkim.conf" do
   source "opendkim.conf.erb"
