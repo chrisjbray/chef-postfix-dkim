@@ -28,7 +28,9 @@ include_recipe 'postfix-dkim::package'
 
 template "/etc/opendkim.conf" do
   source "opendkim.conf.erb"
-  mode 0755
+  mode node['postfix_dkim']['keyfile_mode']
+  owner node['postfix_dkim']['keyfile_owner']
+  group node['postfix_dkim']['keyfile_group']
   variables(
     domain:       node['postfix_dkim']['domain'],
     keyfile:      node['postfix_dkim']['keyfile'],
@@ -36,7 +38,8 @@ template "/etc/opendkim.conf" do
     autorestart:  (node['postfix_dkim']['autorestart'] ? 'yes' : 'no'),
     send_headers: node['postfix_dkim']['sender_headers'],
     socket:       node['postfix_dkim']['socket'],
-    canonicalization: node['postfix_dkim']['canonicalization']
+    canonicalization: node['postfix_dkim']['canonicalization'],
+    pidfile:      node['postfix_dkim']['pidfile']
   )
   notifies :restart, 'service[opendkim]', :delayed
 end
